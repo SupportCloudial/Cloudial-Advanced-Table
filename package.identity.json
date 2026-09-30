@@ -1,0 +1,26 @@
+{
+  "$schema": "./schemas/package-identity.schema.json",
+  "schemaVersion": 1,
+  "id": "cloudial-advanced-table",
+  "name": "Cloudial Advanced Table",
+  "description": "A reusable config-driven Lightning datatable with custom cell types, CRM chrome (search/filter/columns/bulk), client-side sort, validation hooks, and visual themes.",
+  "features": [
+    "Config-driven columns (Cloudial schema or raw lightning-datatable columns)",
+    "Custom cell types: combobox, pencilEditable, booleanCheckbox, scoreMeter, vipBadge, action menu, status icons",
+    "Record hyperlinks via recordLink",
+    "Header actions, contextual bulk-actions, toolbar slot",
+    "Optional search, filter panel, column picker, refresh chrome",
+    "Client-side type-aware column sort (ASC/DESC)",
+    "Draft-values editing with Save/Cancel",
+    "Declarative validation plus host error map",
+    "Themes: default, dense, glass, soft, highContrast",
+    "Nested LWC only (Lightning Web Security required cross-namespace)"
+  ],
+  "whenToUse": "Use when a Salesforce LWC needs a generic, themeable data grid with richer cell editing and CRM-style chrome than base lightning-datatable, without host-app hardwiring.",
+  "repository": "https://github.com/SupportCloudial/Cloudial-Advanced-Table",
+  "packageType": "managed",
+  "status": "released",
+  "version": "1.0.0",
+  "subscriberPackageVersionId": "04tJ6000000Lx4RIAS",
+  "installUrl": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx4RIAS"
+}

@@ -1,0 +1,30 @@
+.adt-cell_editable {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 2.5rem;
+  box-sizing: border-box;
+  gap: 0.5rem;
+}
+
+.adt-cell_editable .slds-truncate {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.adt-cell__edit-icon {
+  flex: 0 0 auto;
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.adt-cell_editable:hover .adt-cell__edit-icon,
+.adt-cell_editable:focus-within .adt-cell__edit-icon {
+  opacity: 1;
+}
+
+.adt-pencil-editor {
+  width: 100%;
+  min-height: 1.75rem;
+}

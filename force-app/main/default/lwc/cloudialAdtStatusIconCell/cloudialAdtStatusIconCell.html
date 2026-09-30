@@ -1,0 +1,17 @@
+<template>
+  <div class="adt-status-icons slds-grid slds-grid_vertical-align-center">
+    <template lwc:if={hasIcons}>
+      <template for:each={iconList} for:item="icon">
+        <lightning-icon
+          key={icon.key}
+          icon-name={icon.iconName}
+          src={icon.iconSrc}
+          size="x-small"
+          alternative-text={icon.alternativeText}
+          title={icon.tooltip}
+          class="adt-status-icons__item"
+        ></lightning-icon>
+      </template>
+    </template>
+  </div>
+</template>

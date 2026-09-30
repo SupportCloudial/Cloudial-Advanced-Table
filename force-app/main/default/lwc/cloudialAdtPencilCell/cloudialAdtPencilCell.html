@@ -1,0 +1,38 @@
+<template>
+  <template lwc:if={editMode}>
+    <input
+      class="adt-pencil-editor slds-input"
+      type={nativeInputType}
+      step={step}
+      value={editorValue}
+      oninput={handleInput}
+      onblur={handleBlur}
+      onkeydown={handleEditorKeyDown}
+      aria-label="Edit value"
+    />
+  </template>
+  <template lwc:else>
+    <div class={cellClass}>
+      <div
+        class="slds-truncate"
+        onclick={enterEdit}
+        onkeydown={handleKeyDown}
+        role={readOnlyRole}
+        tabindex={readOnlyTabIndex}
+      >
+        {displayValue}
+      </div>
+      <template lwc:if={isEditable}>
+        <lightning-button-icon
+          class="adt-cell__edit-icon"
+          icon-name="utility:edit"
+          size="small"
+          variant="bare"
+          alternative-text="Edit"
+          title="Edit"
+          onclick={enterEdit}
+        ></lightning-button-icon>
+      </template>
+    </div>
+  </template>
+</template>

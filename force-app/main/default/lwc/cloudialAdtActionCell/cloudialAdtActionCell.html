@@ -1,0 +1,17 @@
+<template>
+  <template lwc:if={isHidden}></template>
+  <template lwc:else>
+    <div class="adt-action-cell slds-align_absolute-center" title={tooltip}>
+      <lightning-button-icon
+        icon-name={iconName}
+        src={iconSrc}
+        alternative-text={alternativeText}
+        title={tooltip}
+        variant={variant}
+        size={size}
+        disabled={isDisabled}
+        onclick={handleClick}
+      ></lightning-button-icon>
+    </div>
+  </template>
+</template>

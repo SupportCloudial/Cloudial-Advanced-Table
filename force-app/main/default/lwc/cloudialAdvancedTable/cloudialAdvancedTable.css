@@ -1,0 +1,272 @@
+:host {
+  display: block;
+  --cloudial-adt-surface: #ffffff;
+  --cloudial-adt-surface-muted: #f3f3f3;
+  --cloudial-adt-border: #c9c9c9;
+  --cloudial-adt-header-bg: #f3f3f3;
+  --cloudial-adt-header-text: #181818;
+  --cloudial-adt-row-hover: #f3f3f3;
+  --cloudial-adt-radius: 0.25rem;
+  --cloudial-adt-shadow: none;
+  --cloudial-adt-backdrop: none;
+  --cloudial-adt-accent: #0176d3;
+  --cloudial-adt-font-size: 0.8125rem;
+}
+
+.cloudial-adt {
+  background: var(--cloudial-adt-surface);
+  border: 1px solid var(--cloudial-adt-border);
+  border-radius: var(--cloudial-adt-radius);
+  box-shadow: var(--cloudial-adt-shadow);
+  backdrop-filter: var(--cloudial-adt-backdrop);
+  overflow: hidden;
+  border-top: 4px solid var(--cloudial-adt-accent);
+}
+
+.cloudial-adt__toolbar:empty {
+  display: none;
+}
+
+.cloudial-adt__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--cloudial-adt-border);
+  background: var(--cloudial-adt-surface-muted);
+}
+
+.cloudial-adt__header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.cloudial-adt__title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cloudial-adt-header-text, #181818);
+  min-width: 0;
+}
+
+.cloudial-adt__count {
+  font-size: 0.75rem;
+  color: #706e6b;
+  white-space: nowrap;
+}
+
+.cloudial-adt__header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.cloudial-adt__selection-banner {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0176d3;
+}
+
+.cloudial-adt__selection-sep {
+  color: #c9c9c9;
+}
+
+.cloudial-adt__chrome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--cloudial-adt-border);
+  background: #fff;
+}
+
+.cloudial-adt__search {
+  flex: 1 1 14rem;
+  min-width: 12rem;
+  max-width: 24rem;
+}
+
+.cloudial-adt__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-bottom: 1px solid var(--cloudial-adt-border);
+  background: #f8fafc;
+}
+
+.cloudial-adt__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: #eaf5fe;
+  border: 1px solid #90d0fe;
+  font-size: 0.75rem;
+  color: #0b5cab;
+}
+
+.cloudial-adt__chip-remove,
+.cloudial-adt__chip-clear {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font-size: 0.75rem;
+  padding: 0;
+}
+
+.cloudial-adt__chip-clear {
+  color: #0176d3;
+  text-decoration: underline;
+}
+
+.cloudial-adt__panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--cloudial-adt-border);
+  background: #fafbfc;
+}
+
+.cloudial-adt__panel-field {
+  min-width: 0;
+}
+
+.cloudial-adt__table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cloudial-adt__toolbar {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--cloudial-adt-border);
+  background: var(--cloudial-adt-surface-muted);
+}
+
+.cloudial-adt_bulk .cloudial-adt__header {
+  background: #eaf5fe;
+  border-bottom-color: #90d0fe;
+}
+
+.cloudial-adt__footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--cloudial-adt-border);
+  background: var(--cloudial-adt-surface-muted);
+  position: sticky;
+  bottom: 0;
+}
+
+.cloudial-adt__banner {
+  padding: 0.5rem 0.75rem;
+  font-size: var(--cloudial-adt-font-size);
+}
+
+.cloudial-adt__banner_error {
+  background: #fef1ee;
+  color: #8e030f;
+  border-bottom: 1px solid #fdd4d0;
+}
+
+.cloudial-adt__empty {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: var(--cloudial-adt-font-size);
+}
+
+/* ===== Themes (wrapper chrome — datatable cells themed via shadow injection) ===== */
+
+.cloudial-adt_theme-default {
+  --cloudial-adt-accent: #0176d3;
+}
+
+.cloudial-adt_theme-dense {
+  --cloudial-adt-row-pad: 0.15rem;
+  --cloudial-adt-font-size: 0.7rem;
+  --cloudial-adt-surface-muted: #ebebeb;
+  --cloudial-adt-border: #adadad;
+  --cloudial-adt-accent: #5c5c5c;
+  --cloudial-adt-radius: 0;
+}
+.cloudial-adt_theme-dense .cloudial-adt__header {
+  padding: 0.35rem 0.6rem;
+}
+.cloudial-adt_theme-dense .cloudial-adt__title {
+  font-size: 0.85rem;
+}
+.cloudial-adt_theme-dense .cloudial-adt__footer {
+  padding: 0.4rem 0.6rem;
+}
+
+.cloudial-adt_theme-glass {
+  --cloudial-adt-surface: linear-gradient(145deg, rgba(224, 242, 254, 0.9), rgba(255, 255, 255, 0.75));
+  --cloudial-adt-surface-muted: rgba(186, 230, 253, 0.45);
+  --cloudial-adt-header-bg: rgba(255, 255, 255, 0.5);
+  --cloudial-adt-header-text: #0c4a6e;
+  --cloudial-adt-border: rgba(14, 165, 233, 0.45);
+  --cloudial-adt-shadow: 0 12px 32px rgba(14, 165, 233, 0.18);
+  --cloudial-adt-backdrop: blur(12px);
+  --cloudial-adt-radius: 1rem;
+  --cloudial-adt-accent: #0ea5e9;
+  background: linear-gradient(145deg, #e0f2fe 0%, #f0f9ff 45%, #ffffff 100%);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+}
+
+.cloudial-adt_theme-soft {
+  --cloudial-adt-surface: #f8fafc;
+  --cloudial-adt-surface-muted: #dbeafe;
+  --cloudial-adt-header-bg: #dbeafe;
+  --cloudial-adt-header-text: #1e3a8a;
+  --cloudial-adt-border: #93c5fd;
+  --cloudial-adt-radius: 0.85rem;
+  --cloudial-adt-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+  --cloudial-adt-row-hover: #bfdbfe;
+  --cloudial-adt-accent: #2563eb;
+  background: #f8fafc;
+  border: 1px solid #93c5fd;
+}
+
+.cloudial-adt_theme-highContrast {
+  --cloudial-adt-surface: #ffffff;
+  --cloudial-adt-surface-muted: #000000;
+  --cloudial-adt-header-bg: #000000;
+  --cloudial-adt-header-text: #ffffff;
+  --cloudial-adt-border: #000000;
+  --cloudial-adt-row-hover: #ffff00;
+  --cloudial-adt-radius: 0;
+  --cloudial-adt-shadow: none;
+  --cloudial-adt-accent: #000000;
+  border: 3px solid #000000;
+  border-top-width: 6px;
+}
+.cloudial-adt_theme-highContrast .cloudial-adt__header {
+  background: #000000;
+  border-bottom: 3px solid #000000;
+}
+.cloudial-adt_theme-highContrast .cloudial-adt__title {
+  background: transparent;
+  color: #ffffff;
+  padding: 0;
+}
+.cloudial-adt_theme-highContrast .cloudial-adt__footer {
+  background: #000000;
+  border-top: 3px solid #000000;
+}
+
+.cloudial-adt_theme-custom {
+  /* Host overrides CSS custom properties on the element. */
+}

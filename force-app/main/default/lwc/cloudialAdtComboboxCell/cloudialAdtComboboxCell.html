@@ -1,0 +1,33 @@
+<template>
+  <template lwc:if={editMode}>
+    <select class="adt-combobox-editor" onchange={handleChange} aria-label="Edit picklist">
+      <template for:each={optionsForRender} for:item="opt">
+        <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
+      </template>
+    </select>
+  </template>
+  <template lwc:else>
+    <div class={cellClass}>
+      <div
+        class="slds-truncate"
+        onclick={enterEdit}
+        onkeydown={handleKeyDown}
+        role={readOnlyRole}
+        tabindex={readOnlyTabIndex}
+      >
+        {displayLabel}
+      </div>
+      <template lwc:if={isEditable}>
+        <lightning-button-icon
+          class="adt-cell__edit-icon"
+          icon-name="utility:edit"
+          size="small"
+          variant="bare"
+          alternative-text="Edit"
+          title="Edit"
+          onclick={enterEdit}
+        ></lightning-button-icon>
+      </template>
+    </div>
+  </template>
+</template>
