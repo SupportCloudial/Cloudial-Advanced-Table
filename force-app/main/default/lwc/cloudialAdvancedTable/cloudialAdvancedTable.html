@@ -1,0 +1,193 @@
+<template>
+  <div class={hostClass} data-theme={theme}>
+    <template lwc:if={showHeaderBar}>
+      <div class="cloudial-adt__header">
+        <div class="cloudial-adt__header-left">
+          <div class="cloudial-adt__title slds-text-heading_small">
+            <template lwc:if={hasTitle}>{title}</template>
+          </div>
+          <div class="cloudial-adt__count">{computedRecordCountLabel}</div>
+        </div>
+        <template lwc:if={hasHeaderActions}>
+          <div class="cloudial-adt__header-actions">
+            <template lwc:if={hasSelection}>
+              <span class="cloudial-adt__selection-banner">{selectionBanner}</span>
+              <span class="cloudial-adt__selection-sep" aria-hidden="true">|</span>
+            </template>
+            <template for:each={headerActionItems} for:item="action">
+              <lightning-button
+                key={action.key}
+                data-name={action.name}
+                label={action.label}
+                variant={action.variant}
+                disabled={action.disabled}
+                icon-name={action.iconName}
+                title={action.title}
+                onclick={handleHeaderActionClick}
+              ></lightning-button>
+            </template>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <template lwc:if={showChromeRow}>
+      <div class="cloudial-adt__chrome">
+        <template lwc:if={enableSearch}>
+          <lightning-input
+            class="cloudial-adt__search"
+            type="search"
+            variant="label-hidden"
+            label="Search"
+            placeholder={searchPlaceholder}
+            value={searchTerm}
+            onchange={handleSearchInput}
+            onkeyup={handleSearchInput}
+          ></lightning-input>
+        </template>
+        <template lwc:if={enableFilter}>
+          <lightning-button
+            label="Filter"
+            icon-name="utility:filterList"
+            onclick={toggleFilterPanel}
+          ></lightning-button>
+        </template>
+        <template lwc:if={enableColumnPicker}>
+          <lightning-button
+            label="Columns"
+            icon-name="utility:table"
+            onclick={toggleColumnPanel}
+          ></lightning-button>
+        </template>
+        <template lwc:if={enableRefresh}>
+          <lightning-button
+            label="Refresh"
+            icon-name="utility:refresh"
+            onclick={handleRefreshClick}
+          ></lightning-button>
+        </template>
+      </div>
+    </template>
+
+    <template lwc:if={hasActiveFilterChips}>
+      <div class="cloudial-adt__chips">
+        <template for:each={activeFilterChips} for:item="chip">
+          <span key={chip.key} class="cloudial-adt__chip">
+            {chip.label}
+            <button
+              type="button"
+              class="cloudial-adt__chip-remove"
+              data-name={chip.key}
+              onclick={clearFilter}
+              title="Remove filter"
+            >
+              ×
+            </button>
+          </span>
+        </template>
+        <button type="button" class="cloudial-adt__chip-clear" onclick={clearAllFilters}>
+          Clear all
+        </button>
+      </div>
+    </template>
+
+    <template lwc:if={showFilterPanel}>
+      <div class="cloudial-adt__panel">
+        <template for:each={filterDefItems} for:item="filter">
+          <div key={filter.key} class="cloudial-adt__panel-field">
+            <template lwc:if={filter.isBoolean}>
+              <lightning-input
+                type="checkbox"
+                label={filter.label}
+                checked={filter.checked}
+                data-name={filter.name}
+                onchange={handleFilterBooleanChange}
+              ></lightning-input>
+            </template>
+            <template lwc:elseif={filter.isPicklist}>
+              <lightning-combobox
+                label={filter.label}
+                value={filter.value}
+                options={filter.options}
+                data-name={filter.name}
+                onchange={handleFilterPicklistChange}
+              ></lightning-combobox>
+            </template>
+            <template lwc:else>
+              <lightning-input
+                type="text"
+                label={filter.label}
+                value={filter.value}
+                data-name={filter.name}
+                onchange={handleFilterTextChange}
+              ></lightning-input>
+            </template>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <template lwc:if={showColumnPanel}>
+      <div class="cloudial-adt__panel">
+        <template for:each={columnPickerItems} for:item="col">
+          <lightning-input
+            key={col.key}
+            type="checkbox"
+            label={col.label}
+            checked={col.checked}
+            data-field={col.field}
+            onchange={handleColumnToggle}
+          ></lightning-input>
+        </template>
+      </div>
+    </template>
+
+    <div class="cloudial-adt__toolbar">
+      <slot name="toolbar"></slot>
+    </div>
+
+    <template lwc:if={showErrorBanner}>
+      <div class="cloudial-adt__banner cloudial-adt__banner_error" role="alert">
+        {errorMessage}
+      </div>
+    </template>
+
+    <template lwc:if={showEmpty}>
+      <div class="cloudial-adt__empty slds-text-color_weak" role="status">
+        {emptyMessage}
+      </div>
+    </template>
+
+    <template lwc:if={hasRows}>
+      <div class="cloudial-adt__table-wrap">
+        <c-cloudial-adt-datatable
+          key-field={keyField}
+          data={displayData}
+          columns={resolvedColumns}
+          draft-values={combinedDrafts}
+          selected-rows={selectedRows}
+          hide-checkbox-column={hideCheckboxColumn}
+          show-row-number-column={showRowNumberColumn}
+          suppress-bottom-bar
+          sorted-by={sortedBy}
+          sorted-direction={sortedDirection}
+          errors={errorsForTable}
+          data-cloudial-theme={theme}
+          onsort={handleSort}
+          onrowselection={handleRowSelection}
+          onsave={handleDatatableSave}
+          oncellchange={handleCellChange}
+          oncombovaluechange={handleComboValueChange}
+          onrowaction={handleRowAction}
+        ></c-cloudial-adt-datatable>
+      </div>
+    </template>
+
+    <template lwc:if={showFooterActions}>
+      <div class="cloudial-adt__footer">
+        <lightning-button label="Cancel" onclick={handleFooterCancel}></lightning-button>
+        <lightning-button label="Save" variant="brand" onclick={handleFooterSave}></lightning-button>
+      </div>
+    </template>
+  </div>
+</template>

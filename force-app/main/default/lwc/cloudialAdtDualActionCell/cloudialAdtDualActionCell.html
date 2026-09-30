@@ -1,0 +1,28 @@
+<template>
+  <div class="adt-dual-action slds-grid slds-grid_align-end slds-grid_vertical-align-center">
+    <template lwc:if={showLeft}>
+      <lightning-button-icon
+        icon-name={leftIconName}
+        src={leftIconSrc}
+        alternative-text={leftAlternativeText}
+        title={leftTooltip}
+        variant={variant}
+        size={size}
+        disabled={leftIsDisabled}
+        onclick={handleLeft}
+      ></lightning-button-icon>
+    </template>
+    <template lwc:if={showRight}>
+      <lightning-button-icon
+        icon-name={rightIconName}
+        src={rightIconSrc}
+        alternative-text={rightAlternativeText}
+        title={rightTooltip}
+        variant={variant}
+        size={size}
+        disabled={rightIsDisabled}
+        onclick={handleRight}
+      ></lightning-button-icon>
+    </template>
+  </div>
+</template>

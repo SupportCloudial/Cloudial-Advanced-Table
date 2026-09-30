@@ -1,0 +1,32 @@
+<template>
+  <template lwc:if={editMode}>
+    <input
+      class="adt-score-editor slds-input"
+      type="number"
+      value={editorValue}
+      oninput={handleInput}
+      onblur={handleBlur}
+      onkeydown={handleKeyDown}
+      aria-label="Edit score"
+    />
+  </template>
+  <template lwc:else>
+    <div class="adt-score" onclick={enterEdit} title={displayValue}>
+      <span class="adt-score__value">{displayValue}</span>
+      <div class="adt-score__track" aria-hidden="true">
+        <div class="adt-score__fill" style={meterStyle}></div>
+      </div>
+      <template lwc:if={isEditable}>
+        <lightning-button-icon
+          class="adt-cell__edit-icon"
+          icon-name="utility:edit"
+          size="small"
+          variant="bare"
+          alternative-text="Edit score"
+          title="Edit"
+          onclick={enterEdit}
+        ></lightning-button-icon>
+      </template>
+    </div>
+  </template>
+</template>

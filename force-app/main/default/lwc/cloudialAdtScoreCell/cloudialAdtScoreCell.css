@@ -1,0 +1,40 @@
+.adt-score {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2.5rem;
+  box-sizing: border-box;
+}
+.adt-score__value {
+  flex: 0 0 auto;
+  min-width: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.adt-score__track {
+  flex: 1 1 auto;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: #e5e5e5;
+  overflow: hidden;
+  min-width: 2.5rem;
+}
+.adt-score__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #0176d3;
+}
+.adt-cell__edit-icon {
+  flex: 0 0 auto;
+  opacity: 0;
+  margin-left: auto;
+}
+.adt-score:hover .adt-cell__edit-icon,
+.adt-score:focus-within .adt-cell__edit-icon {
+  opacity: 1;
+}
+.adt-score-editor {
+  width: 100%;
+  min-height: 1.75rem;
+}
