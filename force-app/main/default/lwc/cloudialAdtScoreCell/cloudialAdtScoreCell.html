@@ -7,7 +7,7 @@
       oninput={handleInput}
       onblur={handleBlur}
       onkeydown={handleKeyDown}
-      aria-label="Edit score"
+      aria-label={labels.editScore}
     />
   </template>
   <template lwc:else>
@@ -22,8 +22,8 @@
           icon-name="utility:edit"
           size="small"
           variant="bare"
-          alternative-text="Edit score"
-          title="Edit"
+          alternative-text={labels.editScore}
+          title={labels.edit}
           onclick={enterEdit}
         ></lightning-button-icon>
       </template>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>חיפוש</label>
+        <name>CloudialAdt_Search</name>
+    </customLabels>
+    <customLabels>
+        <label>חיפוש...</label>
+        <name>CloudialAdt_SearchPlaceholder</name>
+    </customLabels>
+    <customLabels>
+        <label>סינון</label>
+        <name>CloudialAdt_Filter</name>
+    </customLabels>
+    <customLabels>
+        <label>עמודות</label>
+        <name>CloudialAdt_Columns</name>
+    </customLabels>
+    <customLabels>
+        <label>רענון</label>
+        <name>CloudialAdt_Refresh</name>
+    </customLabels>
+    <customLabels>
+        <label>שמירה</label>
+        <name>CloudialAdt_Save</name>
+    </customLabels>
+    <customLabels>
+        <label>ביטול</label>
+        <name>CloudialAdt_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label>נקה הכול</label>
+        <name>CloudialAdt_ClearAll</name>
+    </customLabels>
+    <customLabels>
+        <label>הסר סינון</label>
+        <name>CloudialAdt_RemoveFilter</name>
+    </customLabels>
+    <customLabels>
+        <label>אין רשומות להצגה.</label>
+        <name>CloudialAdt_EmptyMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} רשומות</label>
+        <name>CloudialAdt_RecordCount</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} נבחרו</label>
+        <name>CloudialAdt_Selected</name>
+    </customLabels>
+    <customLabels>
+        <label>עריכה</label>
+        <name>CloudialAdt_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label>עריכת ערך</label>
+        <name>CloudialAdt_EditValue</name>
+    </customLabels>
+    <customLabels>
+        <label>עריכת ציון</label>
+        <name>CloudialAdt_EditScore</name>
+    </customLabels>
+    <customLabels>
+        <label>עריכת רשימה</label>
+        <name>CloudialAdt_EditPicklist</name>
+    </customLabels>
+    <customLabels>
+        <label>מחיקה</label>
+        <name>CloudialAdt_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label>פועל</label>
+        <name>CloudialAdt_BooleanOn</name>
+    </customLabels>
+    <customLabels>
+        <label>כבוי</label>
+        <name>CloudialAdt_BooleanOff</name>
+    </customLabels>
+</Translations>

@@ -1,0 +1,29 @@
+.adt-boolean-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: #706e6b;
+}
+.adt-boolean-badge_on {
+  background: #fff8e6;
+  border-color: #fe9339;
+  color: #8c4b02;
+}
+.adt-boolean-badge_off {
+  background: #f3f3f3;
+  border-color: #c9c9c9;
+}
+.adt-boolean-badge:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+.adt-boolean-badge__label {
+  font-weight: 600;
+}

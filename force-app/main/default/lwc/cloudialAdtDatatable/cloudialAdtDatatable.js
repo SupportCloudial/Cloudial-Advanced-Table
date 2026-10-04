@@ -6,6 +6,7 @@ import actionWithTooltipType from "./actionWithTooltipType.html";
 import dualActionWithTooltipType from "./dualActionWithTooltipType.html";
 import statusIconType from "./statusIconType.html";
 import scoreMeterType from "./scoreMeterType.html";
+import booleanBadgeType from "./booleanBadgeType.html";
 import vipBadgeType from "./vipBadgeType.html";
 
 const POLISH = `
@@ -221,10 +222,34 @@ export default class CloudialAdtDatatable extends LightningDatatable {
         "max"
       ]
     },
+    booleanBadge: {
+      template: booleanBadgeType,
+      standardCellLayout: false,
+      typeAttributes: [
+        "editable",
+        "fieldName",
+        "keyField",
+        "keyFieldValue",
+        "trueLabel",
+        "falseLabel",
+        "trueIconName",
+        "falseIconName"
+      ]
+    },
+    /** @deprecated Alias of booleanBadge — prefer type: 'booleanBadge' + host labels. */
     vipBadge: {
       template: vipBadgeType,
       standardCellLayout: false,
-      typeAttributes: ["editable", "fieldName", "keyField", "keyFieldValue"]
+      typeAttributes: [
+        "editable",
+        "fieldName",
+        "keyField",
+        "keyFieldValue",
+        "trueLabel",
+        "falseLabel",
+        "trueIconName",
+        "falseIconName"
+      ]
     }
   };
 

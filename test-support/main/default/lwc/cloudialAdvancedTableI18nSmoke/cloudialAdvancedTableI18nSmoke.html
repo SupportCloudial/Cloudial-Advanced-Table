@@ -1,0 +1,23 @@
+<template>
+  <!-- Local unpackaged tag (deploy force-app with namespace cleared) -->
+  <c-cloudial-advanced-table
+    key-field={keyField}
+    column-defs={columnDefs}
+    data={rows}
+    theme={theme}
+    title={title}
+    header-actions={headerActions}
+    bulk-actions={bulkActions}
+    selected-rows={selectedRows}
+    show-row-number-column
+    enable-search
+    enable-filter
+    filter-defs={filterDefs}
+    enable-column-picker
+    enable-refresh
+    onsave={handleSave}
+    onrowselection={handleRowSelection}
+    onrowaction={handleRowAction}
+    onheaderaction={handleHeaderAction}
+  ></c-cloudial-advanced-table>
+</template>

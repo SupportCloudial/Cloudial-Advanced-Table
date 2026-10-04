@@ -1,12 +1,13 @@
-﻿{
+{
   "packageDirectories": [
     {
-      "versionName": "Version 1.0.0 UX polish",
-      "versionNumber": "1.0.0.NEXT",
+      "versionName": "Version 1.2.0 booleanBadge",
+      "versionNumber": "1.2.0.NEXT",
       "path": "force-app",
       "default": true,
       "package": "Cloudial Advanced Table",
-      "versionDescription": "CRM chrome (search/filter/columns/bulk), scoreMeter, vipBadge, row action menu, client sort/search/filter, themes."
+      "versionDescription": "Generic booleanBadge cell (host labels/icons); vipBadge deprecated alias; On/Off label defaults.",
+      "ancestorVersion": "1.1.0"
     }
   ],
   "name": "Cloudial Advanced Table",
@@ -16,6 +17,8 @@
   "packageAliases": {
     "Cloudial Advanced Table": "0HoJ60000000064KAA",
     "Cloudial Advanced Table@1.0.0-1": "04tJ6000000Lx4MIAS",
-    "Cloudial Advanced Table@1.0.0-2": "04tJ6000000Lx4RIAS"
+    "Cloudial Advanced Table@1.0.0-2": "04tJ6000000Lx4RIAS",
+    "Cloudial Advanced Table@1.1.0-1": "04tJ6000000Lx5FIAS",
+    "Cloudial Advanced Table@1.2.0-1": "04tJ6000000Lx5KIAS"
   }
 }

@@ -14,7 +14,7 @@
 
 .adt-cell__edit-icon {
   flex: 0 0 auto;
-  margin-left: auto;
+  margin-inline-start: auto;
   opacity: 0;
   transition: opacity 0.12s ease;
 }

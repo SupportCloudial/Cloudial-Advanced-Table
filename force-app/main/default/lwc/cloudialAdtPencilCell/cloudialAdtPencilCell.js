@@ -1,4 +1,6 @@
 import { LightningElement, api } from "lwc";
+import LABEL_EDIT from "@salesforce/label/c.CloudialAdt_Edit";
+import LABEL_EDIT_VALUE from "@salesforce/label/c.CloudialAdt_EditValue";
 
 export default class CloudialAdtPencilCell extends LightningElement {
   @api editable;
@@ -9,6 +11,11 @@ export default class CloudialAdtPencilCell extends LightningElement {
   @api inputType = "text";
   @api step = "any";
   @api alignment = "slds-text-align_left";
+
+  labels = {
+    edit: LABEL_EDIT,
+    editValue: LABEL_EDIT_VALUE
+  };
 
   editMode = false;
   editorValue = "";

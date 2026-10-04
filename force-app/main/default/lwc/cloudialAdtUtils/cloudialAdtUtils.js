@@ -3,6 +3,11 @@
  * Keep these functions `this`-free for Jest unit tests.
  */
 
+import LABEL_EDIT from "@salesforce/label/c.CloudialAdt_Edit";
+import LABEL_DELETE from "@salesforce/label/c.CloudialAdt_Delete";
+import LABEL_BOOLEAN_ON from "@salesforce/label/c.CloudialAdt_BooleanOn";
+import LABEL_BOOLEAN_OFF from "@salesforce/label/c.CloudialAdt_BooleanOff";
+
 const CUSTOM_TYPES = new Set([
   "combobox",
   "pencilEditable",
@@ -11,6 +16,7 @@ const CUSTOM_TYPES = new Set([
   "dualActionWithTooltip",
   "statusIcon",
   "scoreMeter",
+  "booleanBadge",
   "vipBadge"
 ]);
 
@@ -61,7 +67,12 @@ const NUMERIC_TYPES = new Set([
   "scoreMeter"
 ]);
 
-const BOOLEAN_TYPES = new Set(["boolean", "booleanCheckbox", "vipBadge"]);
+const BOOLEAN_TYPES = new Set([
+  "boolean",
+  "booleanCheckbox",
+  "booleanBadge",
+  "vipBadge"
+]);
 
 const DATE_TYPES = new Set(["date", "date-local"]);
 
@@ -203,8 +214,8 @@ function mapOneColumn(col, keyField) {
         col.leftHidden !== undefined
           ? col.leftHidden
           : col.typeAttributes?.leftHidden || false,
-      leftTooltip: col.leftTooltip || "Edit",
-      leftAlternativeText: col.leftAlternativeText || "Edit",
+      leftTooltip: col.leftTooltip || LABEL_EDIT,
+      leftAlternativeText: col.leftAlternativeText || LABEL_EDIT,
       rightIconName: col.rightIconName || "utility:delete",
       rightIconSrc: col.rightIconSrc,
       rightName: col.rightName || "right-action",
@@ -216,8 +227,8 @@ function mapOneColumn(col, keyField) {
         col.rightHidden !== undefined
           ? col.rightHidden
           : col.typeAttributes?.rightHidden || false,
-      rightTooltip: col.rightTooltip || "Delete",
-      rightAlternativeText: col.rightAlternativeText || "Delete",
+      rightTooltip: col.rightTooltip || LABEL_DELETE,
+      rightAlternativeText: col.rightAlternativeText || LABEL_DELETE,
       variant: col.variant || "bare",
       size: col.size || "small",
       ...(mapped.typeAttributes || {})
@@ -239,13 +250,32 @@ function mapOneColumn(col, keyField) {
       max: col.max != null ? col.max : 100,
       ...(mapped.typeAttributes || {})
     };
-  } else if (type === "vipBadge") {
-    mapped.type = "vipBadge";
+  } else if (type === "booleanBadge" || type === "vipBadge") {
+    // vipBadge kept as alias for managed upgrades; prefer booleanBadge.
+    mapped.type = type === "vipBadge" ? "vipBadge" : "booleanBadge";
+    const trueLabel =
+      col.trueLabel ||
+      col.typeAttributes?.trueLabel ||
+      LABEL_BOOLEAN_ON;
+    const falseLabel =
+      col.falseLabel ||
+      col.typeAttributes?.falseLabel ||
+      LABEL_BOOLEAN_OFF;
     mapped.typeAttributes = {
       editable: editable,
       fieldName,
       keyField,
       keyFieldValue: { fieldName: keyField },
+      trueLabel,
+      falseLabel,
+      trueIconName:
+        col.trueIconName ||
+        col.typeAttributes?.trueIconName ||
+        "utility:check",
+      falseIconName:
+        col.falseIconName ||
+        col.typeAttributes?.falseIconName ||
+        "utility:close",
       ...(mapped.typeAttributes || {})
     };
   } else if (type === "rowMenu" || type === "action") {

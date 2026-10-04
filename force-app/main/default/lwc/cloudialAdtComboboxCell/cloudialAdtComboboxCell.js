@@ -1,4 +1,6 @@
 import { LightningElement, api } from "lwc";
+import LABEL_EDIT from "@salesforce/label/c.CloudialAdt_Edit";
+import LABEL_EDIT_PICKLIST from "@salesforce/label/c.CloudialAdt_EditPicklist";
 
 export default class CloudialAdtComboboxCell extends LightningElement {
   @api editable;
@@ -8,6 +10,11 @@ export default class CloudialAdtComboboxCell extends LightningElement {
   @api picklistValues;
   @api value;
   @api alignment = "slds-text-align_left";
+
+  labels = {
+    edit: LABEL_EDIT,
+    editPicklist: LABEL_EDIT_PICKLIST
+  };
 
   editMode = false;
 

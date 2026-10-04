@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CloudialAdt_Search</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Search label</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_SearchPlaceholder</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Search placeholder</shortDescription>
+        <value>Search...</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Filter</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Filter button</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Columns</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Columns button</shortDescription>
+        <value>Columns</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Refresh</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Refresh button</shortDescription>
+        <value>Refresh</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Save</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Save button</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Cancel</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Cancel button</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_ClearAll</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Clear all filters</shortDescription>
+        <value>Clear all</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_RemoveFilter</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Remove filter chip</shortDescription>
+        <value>Remove filter</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_EmptyMessage</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table empty state</shortDescription>
+        <value>No records to display.</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_RecordCount</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table record count with {0} placeholder</shortDescription>
+        <value>{0} records</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Selected</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table selection banner with {0} placeholder</shortDescription>
+        <value>{0} selected</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Edit</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Edit tooltip</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_EditValue</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Edit value aria-label</shortDescription>
+        <value>Edit value</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_EditScore</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Edit score aria-label</shortDescription>
+        <value>Edit score</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_EditPicklist</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Edit picklist aria-label</shortDescription>
+        <value>Edit picklist</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_Delete</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table Delete tooltip default</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_BooleanOn</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table booleanBadge default true label</shortDescription>
+        <value>On</value>
+    </labels>
+    <labels>
+        <fullName>CloudialAdt_BooleanOff</fullName>
+        <categories>CloudialAdvancedTable</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Table booleanBadge default false label</shortDescription>
+        <value>Off</value>
+    </labels>
+</CustomLabels>

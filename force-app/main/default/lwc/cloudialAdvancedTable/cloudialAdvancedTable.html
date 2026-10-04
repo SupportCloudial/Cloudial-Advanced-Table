@@ -38,8 +38,8 @@
             class="cloudial-adt__search"
             type="search"
             variant="label-hidden"
-            label="Search"
-            placeholder={searchPlaceholder}
+            label={labels.search}
+            placeholder={resolvedSearchPlaceholder}
             value={searchTerm}
             onchange={handleSearchInput}
             onkeyup={handleSearchInput}
@@ -47,21 +47,21 @@
         </template>
         <template lwc:if={enableFilter}>
           <lightning-button
-            label="Filter"
+            label={labels.filter}
             icon-name="utility:filterList"
             onclick={toggleFilterPanel}
           ></lightning-button>
         </template>
         <template lwc:if={enableColumnPicker}>
           <lightning-button
-            label="Columns"
+            label={labels.columns}
             icon-name="utility:table"
             onclick={toggleColumnPanel}
           ></lightning-button>
         </template>
         <template lwc:if={enableRefresh}>
           <lightning-button
-            label="Refresh"
+            label={labels.refresh}
             icon-name="utility:refresh"
             onclick={handleRefreshClick}
           ></lightning-button>
@@ -79,14 +79,14 @@
               class="cloudial-adt__chip-remove"
               data-name={chip.key}
               onclick={clearFilter}
-              title="Remove filter"
+              title={labels.removeFilter}
             >
               ×
             </button>
           </span>
         </template>
         <button type="button" class="cloudial-adt__chip-clear" onclick={clearAllFilters}>
-          Clear all
+          {labels.clearAll}
         </button>
       </div>
     </template>
@@ -154,7 +154,7 @@
 
     <template lwc:if={showEmpty}>
       <div class="cloudial-adt__empty slds-text-color_weak" role="status">
-        {emptyMessage}
+        {resolvedEmptyMessage}
       </div>
     </template>
 
@@ -185,8 +185,8 @@
 
     <template lwc:if={showFooterActions}>
       <div class="cloudial-adt__footer">
-        <lightning-button label="Cancel" onclick={handleFooterCancel}></lightning-button>
-        <lightning-button label="Save" variant="brand" onclick={handleFooterSave}></lightning-button>
+        <lightning-button label={labels.cancel} onclick={handleFooterCancel}></lightning-button>
+        <lightning-button label={labels.save} variant="brand" onclick={handleFooterSave}></lightning-button>
       </div>
     </template>
   </div>
