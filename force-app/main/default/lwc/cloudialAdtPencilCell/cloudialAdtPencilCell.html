@@ -8,7 +8,7 @@
       oninput={handleInput}
       onblur={handleBlur}
       onkeydown={handleEditorKeyDown}
-      aria-label="Edit value"
+      aria-label={labels.editValue}
     />
   </template>
   <template lwc:else>
@@ -28,8 +28,8 @@
           icon-name="utility:edit"
           size="small"
           variant="bare"
-          alternative-text="Edit"
-          title="Edit"
+          alternative-text={labels.edit}
+          title={labels.edit}
           onclick={enterEdit}
         ></lightning-button-icon>
       </template>

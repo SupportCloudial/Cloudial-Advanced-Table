@@ -1,0 +1,13 @@
+<template>
+  <button
+    type="button"
+    class={buttonClass}
+    onclick={toggle}
+    disabled={isDisabled}
+    title={label}
+    aria-pressed={isTrue}
+  >
+    <lightning-icon icon-name={iconName} size="xx-small" alternative-text={label}></lightning-icon>
+    <span class="adt-boolean-badge__label">{label}</span>
+  </button>
+</template>

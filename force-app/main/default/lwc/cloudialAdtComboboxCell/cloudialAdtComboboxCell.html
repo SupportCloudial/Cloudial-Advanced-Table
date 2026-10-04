@@ -1,6 +1,6 @@
 <template>
   <template lwc:if={editMode}>
-    <select class="adt-combobox-editor" onchange={handleChange} aria-label="Edit picklist">
+    <select class="adt-combobox-editor" onchange={handleChange} aria-label={labels.editPicklist}>
       <template for:each={optionsForRender} for:item="opt">
         <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
       </template>
@@ -23,8 +23,8 @@
           icon-name="utility:edit"
           size="small"
           variant="bare"
-          alternative-text="Edit"
-          title="Edit"
+          alternative-text={labels.edit}
+          title={labels.edit}
           onclick={enterEdit}
         ></lightning-button-icon>
       </template>

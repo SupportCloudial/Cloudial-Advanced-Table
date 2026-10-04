@@ -10,8 +10,39 @@ import {
   mergeDraftsIntoRows,
   enrichRecordLinkUrls
 } from "c/cloudialAdtUtils";
+import LABEL_SEARCH from "@salesforce/label/c.CloudialAdt_Search";
+import LABEL_SEARCH_PLACEHOLDER from "@salesforce/label/c.CloudialAdt_SearchPlaceholder";
+import LABEL_FILTER from "@salesforce/label/c.CloudialAdt_Filter";
+import LABEL_COLUMNS from "@salesforce/label/c.CloudialAdt_Columns";
+import LABEL_REFRESH from "@salesforce/label/c.CloudialAdt_Refresh";
+import LABEL_SAVE from "@salesforce/label/c.CloudialAdt_Save";
+import LABEL_CANCEL from "@salesforce/label/c.CloudialAdt_Cancel";
+import LABEL_CLEAR_ALL from "@salesforce/label/c.CloudialAdt_ClearAll";
+import LABEL_REMOVE_FILTER from "@salesforce/label/c.CloudialAdt_RemoveFilter";
+import LABEL_EMPTY from "@salesforce/label/c.CloudialAdt_EmptyMessage";
+import LABEL_RECORD_COUNT from "@salesforce/label/c.CloudialAdt_RecordCount";
+import LABEL_SELECTED from "@salesforce/label/c.CloudialAdt_Selected";
+
+function formatLabel(template, value) {
+  return String(template || "").replace(/\{0\}/g, value);
+}
 
 export default class CloudialAdvancedTable extends LightningElement {
+  labels = {
+    search: LABEL_SEARCH,
+    searchPlaceholder: LABEL_SEARCH_PLACEHOLDER,
+    filter: LABEL_FILTER,
+    columns: LABEL_COLUMNS,
+    refresh: LABEL_REFRESH,
+    save: LABEL_SAVE,
+    cancel: LABEL_CANCEL,
+    clearAll: LABEL_CLEAR_ALL,
+    removeFilter: LABEL_REMOVE_FILTER,
+    empty: LABEL_EMPTY,
+    recordCount: LABEL_RECORD_COUNT,
+    selected: LABEL_SELECTED
+  };
+
   @api columnDefs = [];
   @api columns;
   @api
@@ -43,11 +74,13 @@ export default class CloudialAdvancedTable extends LightningElement {
   /** Optional bulk actions when rows are selected: [{ name, label, variant, iconName }] */
   @api bulkActions = [];
   @api errors = [];
-  @api emptyMessage = "No records to display.";
+  /** Optional override; defaults to packaged Custom Label */
+  @api emptyMessage;
   @api errorMessage = "";
   /** Show search box */
   @api enableSearch = false;
-  @api searchPlaceholder = "Search...";
+  /** Optional override; defaults to packaged Custom Label */
+  @api searchPlaceholder;
   /** Fields to search; empty = all string-ish fields on rows */
   @api searchFields = [];
   /** Show Filter button + panel. Filter defs: [{ name, label, type: 'text'|'boolean'|'picklist', options? }] */
@@ -57,9 +90,11 @@ export default class CloudialAdvancedTable extends LightningElement {
   @api enableColumnPicker = false;
   /** Show Refresh in the chrome row (Search / Filter / Columns / Refresh) */
   @api enableRefresh = false;
-  /** Optional total count label override; default uses filtered length */
+  /** Optional total count label override; default uses packaged label / recordNoun */
   @api recordCountLabel = "";
-  @api recordNoun = "records";
+  /** Optional noun override for count (e.g. "contacts"); empty uses packaged "{0} records" */
+  @api recordNoun = "";
+
 
   _suppressBottomBar = true;
   @api
@@ -191,17 +226,31 @@ export default class CloudialAdvancedTable extends LightningElement {
     );
   }
 
+  get resolvedEmptyMessage() {
+    return this.emptyMessage || this.labels.empty;
+  }
+
+  get resolvedSearchPlaceholder() {
+    return this.searchPlaceholder || this.labels.searchPlaceholder;
+  }
+
   get computedRecordCountLabel() {
     if (this.recordCountLabel) {
       return this.recordCountLabel;
     }
     const n = this.displayData.length;
-    const noun = this.recordNoun || "records";
-    return `${n.toLocaleString()} ${noun}`;
+    const formatted = n.toLocaleString();
+    if (this.recordNoun) {
+      return `${formatted} ${this.recordNoun}`;
+    }
+    return formatLabel(this.labels.recordCount, formatted);
   }
 
   get selectionBanner() {
-    return `${this.selectionCount} selected`;
+    return formatLabel(
+      this.labels.selected,
+      this.selectionCount.toLocaleString()
+    );
   }
 
   get hasRows() {

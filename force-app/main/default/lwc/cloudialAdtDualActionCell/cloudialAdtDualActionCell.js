@@ -1,4 +1,6 @@
 import { LightningElement, api } from "lwc";
+import LABEL_EDIT from "@salesforce/label/c.CloudialAdt_Edit";
+import LABEL_DELETE from "@salesforce/label/c.CloudialAdt_Delete";
 
 export default class CloudialAdtDualActionCell extends LightningElement {
   @api keyField;
@@ -8,15 +10,15 @@ export default class CloudialAdtDualActionCell extends LightningElement {
   @api leftName = "left-action";
   @api leftDisabled = false;
   @api leftHidden = false;
-  @api leftTooltip = "Edit";
-  @api leftAlternativeText = "Edit";
+  @api leftTooltip = LABEL_EDIT;
+  @api leftAlternativeText = LABEL_EDIT;
   @api rightIconName = "utility:delete";
   @api rightIconSrc;
   @api rightName = "right-action";
   @api rightDisabled = false;
   @api rightHidden = false;
-  @api rightTooltip = "Delete";
-  @api rightAlternativeText = "Delete";
+  @api rightTooltip = LABEL_DELETE;
+  @api rightAlternativeText = LABEL_DELETE;
   @api variant = "bare";
   @api size = "small";
 

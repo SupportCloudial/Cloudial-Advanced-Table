@@ -42,7 +42,11 @@ Unpackaged / DE testing: `<c-cloudial-advanced-table>`
   type: 'text', // text|number|currency|percent|date|date-local|email|phone|url|boolean|
                 // combobox|pencilEditable|booleanCheckbox|
                 // actionWithTooltip|dualActionWithTooltip|statusIcon|
-                // scoreMeter|vipBadge|action|rowMenu|recordLink
+                // scoreMeter|booleanBadge|vipBadge(deprecated)|action|rowMenu|recordLink
+  trueLabel: 'On',        // booleanBadge (host-owned; defaults to packaged On/Off)
+  falseLabel: 'Off',
+  trueIconName: 'utility:check',
+  falseIconName: 'utility:close',
   editable: true,
   sortable: true,
   recordLink: true,       // render field as hyperlink to the row record
@@ -71,7 +75,8 @@ Unpackaged / DE testing: `<c-cloudial-advanced-table>`
 | `pencilEditable` | Inline text/number/currency; pencil on hover |
 | `booleanCheckbox` | Checkbox draft edit |
 | `scoreMeter` | Number + compact progress bar; optional edit |
-| `vipBadge` | Star/VIP toggle badge (boolean) |
+| `booleanBadge` | Generic boolean toggle badge; host supplies `trueLabel` / `falseLabel` / icons (defaults: packaged On/Off) |
+| `vipBadge` | **Deprecated** alias of `booleanBadge` (upgrade compatibility). Prefer `booleanBadge`. |
 | `action` / `rowMenu` | Single ⋮ menu (`rowActions`) |
 | `actionWithTooltip` / `dualActionWithTooltip` | Icon button(s) |
 | `statusIcon` | Host-supplied icon list on the row |
@@ -130,7 +135,17 @@ columnDefs = [
   { field: 'priorityScore', label: 'Score', type: 'scoreMeter', editable: true, max: 100, initialWidth: 110 },
   { field: 'phone', label: 'Phone', type: 'phone', editable: true },
   { field: 'email', label: 'Email', type: 'email', editable: true },
-  { field: 'vip', label: 'VIP', type: 'vipBadge', editable: true, initialWidth: 110 },
+  {
+    field: 'vip',
+    label: 'VIP',
+    type: 'booleanBadge',
+    editable: true,
+    trueLabel: 'VIP',
+    falseLabel: 'Standard',
+    trueIconName: 'utility:favorite',
+    falseIconName: 'utility:favorite_alt',
+    initialWidth: 110
+  },
   { field: 'accountName', label: 'Account', defaultHidden: true },
   { type: 'action', label: 'Actions', hideable: false, fixedWidth: 60, rowActions: [
       { label: 'View', name: 'view' },

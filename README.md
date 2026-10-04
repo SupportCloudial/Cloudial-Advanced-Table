@@ -10,15 +10,15 @@ actions, validation hooks, and visual themes.
 | Catalog ID | `cloudial-advanced-table` |
 | LWC | `cloudialAdvancedTable` |
 | Package ID | `0HoJ60000000064KAA` |
-| Released version | `1.0.0.2` (`04tJ6000000Lx4RIAS`) |
-| Install URL | https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx4RIAS |
+| Released version | `1.2.0.1` (`04tJ6000000Lx5KIAS`) |
+| Install URL | https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx5KIAS |
 | Repo | https://github.com/SupportCloudial/Cloudial-Advanced-Table |
 
 ## What is generic vs demo
 
 | Layer | Location | Purpose |
 |-------|----------|---------|
-| **Package** | `force-app/` | All chrome + cell types: search, filter, columns, refresh, bulk actions, `scoreMeter`, `vipBadge`, row `action` menu, themes, Save/Cancel |
+| **Package** | `force-app/` | All chrome + cell types: search, filter, columns, refresh, bulk actions, `scoreMeter`, `booleanBadge`, row `action` menu, themes, Save/Cancel |
 | **Package smoke** | `test-support/` | Tiny in-memory harness for subscriber orgs after install |
 | **Contacts DE harness** | `.scratch/dev-edition-smoke/` | Account-related Contacts demo (SF save, VIP/Score demo fields). **Not packaged** |
 

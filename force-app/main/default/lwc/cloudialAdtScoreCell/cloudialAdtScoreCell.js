@@ -1,4 +1,6 @@
 import { LightningElement, api } from "lwc";
+import LABEL_EDIT from "@salesforce/label/c.CloudialAdt_Edit";
+import LABEL_EDIT_SCORE from "@salesforce/label/c.CloudialAdt_EditScore";
 
 export default class CloudialAdtScoreCell extends LightningElement {
   @api value;
@@ -7,6 +9,11 @@ export default class CloudialAdtScoreCell extends LightningElement {
   @api keyField;
   @api keyFieldValue;
   @api max = 100;
+
+  labels = {
+    edit: LABEL_EDIT,
+    editScore: LABEL_EDIT_SCORE
+  };
 
   editMode = false;
   editorValue = "";

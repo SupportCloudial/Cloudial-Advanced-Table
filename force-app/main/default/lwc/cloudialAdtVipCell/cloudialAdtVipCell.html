@@ -1,13 +1,13 @@
 <template>
-  <button
-    type="button"
-    class={buttonClass}
-    onclick={toggle}
-    disabled={isDisabled}
-    title={label}
-    aria-pressed={isVip}
-  >
-    <lightning-icon icon-name={iconName} size="xx-small" alternative-text={label}></lightning-icon>
-    <span class="adt-vip__label">{label}</span>
-  </button>
+  <c-cloudial-adt-boolean-badge-cell
+    value={value}
+    editable={editable}
+    field-name={fieldName}
+    key-field={keyField}
+    key-field-value={keyFieldValue}
+    true-label={trueLabel}
+    false-label={falseLabel}
+    true-icon-name={trueIconName}
+    false-icon-name={falseIconName}
+  ></c-cloudial-adt-boolean-badge-cell>
 </template>

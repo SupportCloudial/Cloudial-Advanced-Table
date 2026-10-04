@@ -6,7 +6,7 @@
   "description": "A reusable config-driven Lightning datatable with custom cell types, CRM chrome (search/filter/columns/bulk), client-side sort, validation hooks, and visual themes.",
   "features": [
     "Config-driven columns (Cloudial schema or raw lightning-datatable columns)",
-    "Custom cell types: combobox, pencilEditable, booleanCheckbox, scoreMeter, vipBadge, action menu, status icons",
+    "Custom cell types: combobox, pencilEditable, booleanCheckbox, scoreMeter, booleanBadge, action menu, status icons",
     "Record hyperlinks via recordLink",
     "Header actions, contextual bulk-actions, toolbar slot",
     "Optional search, filter panel, column picker, refresh chrome",
@@ -20,7 +20,7 @@
   "repository": "https://github.com/SupportCloudial/Cloudial-Advanced-Table",
   "packageType": "managed",
   "status": "released",
-  "version": "1.0.0",
-  "subscriberPackageVersionId": "04tJ6000000Lx4RIAS",
-  "installUrl": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx4RIAS"
+  "version": "1.2.0",
+  "subscriberPackageVersionId": "04tJ6000000Lx5KIAS",
+  "installUrl": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx5KIAS"
 }
