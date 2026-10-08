@@ -26,6 +26,8 @@ Unpackaged / DE testing: `<c-cloudial-advanced-table>`
 | `filter-defs` | Array | `[]` | Filter fields: `{ name, label, type: 'text'\|'boolean'\|'picklist', options? }`. `name` must match a row property. |
 | `enable-column-picker` | Boolean | `false` | Show Columns button to show/hide hideable columns. |
 | `enable-refresh` | Boolean | `false` | Show Refresh in the chrome row (fires `headeraction` with `name: 'refresh'`). |
+| `chrome-action-placement` | String | `header` | Where `header-actions` / `bulk-actions` render: `header` (title row, default), `chrome` (logical end of chrome row), or `toolbar` (logical end of toolbar row). Invalid values fall back to `header`. Selection banner moves with the actions. |
+| `chrome-buttons-variant` | String | `default` | Columns / Refresh look: `default` (label + icon) or `icon` (icon-only; tooltip/aria from packaged labels). Filter stays labeled. Invalid values fall back to `default`. |
 | `record-count-label` | String | — | Override the count text next to the title. |
 | `record-noun` | String | `records` | Used for auto count: `"4 contacts"`. |
 | `theme` | String | `default` | `default` \| `dense` \| `glass` \| `soft` \| `highContrast` \| `custom`. |
@@ -158,6 +160,35 @@ columnDefs = [
 
 Search / filter run **client-side** on the bound `data` array. The host still owns load, save, and navigation.
 
+## Compact chrome (placement + icon buttons)
+
+Omit the new attributes to keep today’s title-row actions and labeled Columns/Refresh. Opt in when the host wants actions beside Search and compact icon chrome:
+
+```html
+<c-cloudial-advanced-table
+  title="Targets"
+  record-noun="rows"
+  key-field="id"
+  column-defs={columnDefs}
+  data={rows}
+  selected-rows={selectedRows}
+  header-actions={headerActions}
+  bulk-actions={bulkActions}
+  enable-search
+  enable-column-picker
+  enable-refresh
+  chrome-action-placement="chrome"
+  chrome-buttons-variant="icon"
+  theme="soft"
+  onheaderaction={handleHeaderAction}
+  onrowselection={handleRowSelection}
+></c-cloudial-advanced-table>
+```
+
+- `chrome` places Add/Clone (and bulk actions + “N selected”) at the **logical end** of the chrome row (RTL-safe).
+- `toolbar` places the same block at the logical end of the toolbar row; host `slot="toolbar"` content stays on the start side.
+- Icon mode affects **Columns** and **Refresh** only; Filter stays labeled; Search stays an input.
+
 ## Events
 
 - `sort` — `{ fieldName, sortDirection }`
@@ -173,7 +204,7 @@ Search / filter run **client-side** on the bound `data` array. The host still ow
 
 ## Slots
 
-- `toolbar` — optional chrome above the grid
+- `toolbar` — optional **host** content above the grid (month pickers, notes, etc.). It is not a substitute for package search / column picker / refresh. When `chrome-action-placement="toolbar"`, package actions render in the same row after the slot content.
 
 ## Themes
 

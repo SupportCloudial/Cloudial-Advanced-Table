@@ -16,10 +16,32 @@ export default class CloudialAdvancedTablePackageSmoke extends LightningElement 
     return [
       { name: "new", label: "New", variant: "brand", iconName: "utility:add" },
       {
-        name: "refresh",
-        label: "Refresh",
+        name: "clone",
+        label: "Clone",
         variant: "neutral",
-        iconName: "utility:refresh"
+        iconName: "utility:copy"
+      }
+    ];
+  }
+
+  get bulkActions() {
+    return [
+      {
+        name: "bulk-delete",
+        label: "Delete",
+        variant: "destructive",
+        iconName: "utility:delete"
+      }
+    ];
+  }
+
+  get filterDefs() {
+    return [
+      {
+        name: "status",
+        label: "Status",
+        type: "picklist",
+        options: ["New", "Working", "Closed"]
       }
     ];
   }

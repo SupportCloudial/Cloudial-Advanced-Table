@@ -23,8 +23,11 @@
   border-top: 4px solid var(--cloudial-adt-accent);
 }
 
-.cloudial-adt__toolbar:empty {
+.cloudial-adt__toolbar_hidden {
   display: none;
+  padding: 0;
+  border: none;
+  margin: 0;
 }
 
 .cloudial-adt__header {
@@ -84,6 +87,10 @@
   padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--cloudial-adt-border);
   background: #fff;
+}
+
+.cloudial-adt__chrome-actions {
+  margin-inline-start: auto;
 }
 
 .cloudial-adt__search {
@@ -154,7 +161,35 @@
   background: var(--cloudial-adt-surface-muted);
 }
 
+.cloudial-adt__toolbar_with-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.cloudial-adt__toolbar-slot {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cloudial-adt__toolbar-actions {
+  flex: 0 0 auto;
+  margin-inline-start: auto;
+}
+
 .cloudial-adt_bulk .cloudial-adt__header {
+  background: #eaf5fe;
+  border-bottom-color: #90d0fe;
+}
+
+.cloudial-adt_bulk-chrome .cloudial-adt__chrome {
+  background: #eaf5fe;
+  border-bottom-color: #90d0fe;
+}
+
+.cloudial-adt_bulk-toolbar .cloudial-adt__toolbar_with-actions {
   background: #eaf5fe;
   border-bottom-color: #90d0fe;
 }

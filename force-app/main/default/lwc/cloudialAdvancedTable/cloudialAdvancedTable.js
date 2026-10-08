@@ -7,6 +7,8 @@ import {
   validateRows,
   mergeHostErrors,
   normalizeTheme,
+  normalizeChromeActionPlacement,
+  normalizeChromeButtonsVariant,
   mergeDraftsIntoRows,
   enrichRecordLinkUrls
 } from "c/cloudialAdtUtils";
@@ -95,6 +97,31 @@ export default class CloudialAdvancedTable extends LightningElement {
   /** Optional noun override for count (e.g. "contacts"); empty uses packaged "{0} records" */
   @api recordNoun = "";
 
+  /**
+   * Where header/bulk actions render: header (default) | chrome | toolbar.
+   * Invalid values fall back to header.
+   */
+  _chromeActionPlacement = "header";
+  @api
+  get chromeActionPlacement() {
+    return this._chromeActionPlacement;
+  }
+  set chromeActionPlacement(value) {
+    this._chromeActionPlacement = normalizeChromeActionPlacement(value);
+  }
+
+  /**
+   * Columns/Refresh button look: default (label+icon) | icon (icon-only).
+   * Invalid values fall back to default. Filter stays labeled.
+   */
+  _chromeButtonsVariant = "default";
+  @api
+  get chromeButtonsVariant() {
+    return this._chromeButtonsVariant;
+  }
+  set chromeButtonsVariant(value) {
+    this._chromeButtonsVariant = normalizeChromeButtonsVariant(value);
+  }
 
   _suppressBottomBar = true;
   @api
@@ -132,6 +159,7 @@ export default class CloudialAdvancedTable extends LightningElement {
   @track showColumnPanel = false;
   @track activeFilters = {};
   @track hiddenFields = {};
+  @track _toolbarSlotHasContent = false;
   _hiddenFieldsInitialized = false;
 
   _data = [];
@@ -169,7 +197,20 @@ export default class CloudialAdvancedTable extends LightningElement {
 
   get hostClass() {
     const theme = normalizeTheme(this.theme);
-    const bulk = this.hasSelection ? " cloudial-adt_bulk" : "";
+    let bulk = "";
+    if (this.hasSelection && this.showActionsInHeader) {
+      bulk = " cloudial-adt_bulk";
+    } else if (this.hasSelection && this.showActionsInChrome) {
+      bulk = " cloudial-adt_bulk-chrome";
+    } else if (this.hasSelection && this.showActionsInToolbar) {
+      bulk = " cloudial-adt_bulk-toolbar";
+    } else if (
+      this.hasSelection &&
+      this.resolvedChromeActionPlacement === "header"
+    ) {
+      // Legacy: selection tint on header when placement is default
+      bulk = " cloudial-adt_bulk";
+    }
     return `cloudial-adt cloudial-adt_theme-${theme}${bulk}`;
   }
 
@@ -206,10 +247,40 @@ export default class CloudialAdvancedTable extends LightningElement {
     return this.headerActionItems.length > 0;
   }
 
+  get resolvedChromeActionPlacement() {
+    return normalizeChromeActionPlacement(this._chromeActionPlacement);
+  }
+
+  get resolvedChromeButtonsVariant() {
+    return normalizeChromeButtonsVariant(this._chromeButtonsVariant);
+  }
+
+  get isChromeButtonsIcon() {
+    return this.resolvedChromeButtonsVariant === "icon";
+  }
+
+  get showActionsInHeader() {
+    return (
+      this.hasHeaderActions && this.resolvedChromeActionPlacement === "header"
+    );
+  }
+
+  get showActionsInChrome() {
+    return (
+      this.hasHeaderActions && this.resolvedChromeActionPlacement === "chrome"
+    );
+  }
+
+  get showActionsInToolbar() {
+    return (
+      this.hasHeaderActions && this.resolvedChromeActionPlacement === "toolbar"
+    );
+  }
+
   get showHeaderBar() {
     return (
       this.hasTitle ||
-      this.hasHeaderActions ||
+      this.showActionsInHeader ||
       this.enableSearch ||
       this.enableFilter ||
       this.enableColumnPicker ||
@@ -222,8 +293,20 @@ export default class CloudialAdvancedTable extends LightningElement {
       this.enableSearch ||
       this.enableFilter ||
       this.enableColumnPicker ||
-      this.enableRefresh
+      this.enableRefresh ||
+      this.showActionsInChrome
     );
+  }
+
+  get toolbarClass() {
+    const parts = ["cloudial-adt__toolbar"];
+    if (this.showActionsInToolbar) {
+      parts.push("cloudial-adt__toolbar_with-actions");
+    }
+    if (!this._toolbarSlotHasContent && !this.showActionsInToolbar) {
+      parts.push("cloudial-adt__toolbar_hidden");
+    }
+    return parts.join(" ");
   }
 
   get resolvedEmptyMessage() {
@@ -361,6 +444,19 @@ export default class CloudialAdvancedTable extends LightningElement {
   connectedCallback() {
     this._initDefaultHiddenFields();
     this._refreshView();
+  }
+
+  handleToolbarSlotChange(event) {
+    const nodes = event.target.assignedNodes({ flatten: true }) || [];
+    this._toolbarSlotHasContent = nodes.some((node) => {
+      if (node.nodeType === 1) {
+        return true;
+      }
+      if (node.nodeType === 3) {
+        return !!(node.textContent && node.textContent.trim());
+      }
+      return false;
+    });
   }
 
   _initDefaultHiddenFields() {

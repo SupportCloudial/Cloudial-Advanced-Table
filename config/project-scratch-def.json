@@ -1,10 +1,23 @@
 {
   "orgName": "Cloudial Advanced Table",
   "edition": "Developer",
-  "features": [],
+  "features": ["EnableSetPasswordInApi"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true,
+      "enableEndUserLanguages": true,
+      "enablePlatformLanguages": true
+    },
+    "securitySettings": {
+      "sessionSettings": {
+        "lockerServiceNext": true
+      }
     }
   }
 }

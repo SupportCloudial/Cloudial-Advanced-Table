@@ -11,6 +11,14 @@ sf project deploy start --source-dir test-support --target-org <scratch-alias>
 
 Then add **Cloudial Advanced Table Package Smoke** to an App or Home page.
 
+The package smoke harness opts into `chrome-action-placement="chrome"` and
+`chrome-buttons-variant="icon"` so you can verify Add/Clone in the chrome row
+and icon-only Columns/Refresh after a 1.3+ install.
+
+The package smoke harness opts into `chrome-action-placement="chrome"` and
+`chrome-buttons-variant="icon"` so you can verify Add/Clone in the chrome row
+and icon-only Columns/Refresh after a 1.3+ install.
+
 ## i18n / RTL pre-package smoke
 
 `cloudialAdvancedTableI18nSmoke` uses the **local** tag `<c-cloudial-advanced-table>`

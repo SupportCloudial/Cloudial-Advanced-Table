@@ -89,6 +89,20 @@ export function normalizeTheme(theme) {
   return allowed.has(t) ? t : "default";
 }
 
+/** @returns {'header'|'chrome'|'toolbar'} */
+export function normalizeChromeActionPlacement(value) {
+  const allowed = new Set(["header", "chrome", "toolbar"]);
+  const v = (value == null || value === "" ? "header" : value).toString().trim();
+  return allowed.has(v) ? v : "header";
+}
+
+/** @returns {'default'|'icon'} */
+export function normalizeChromeButtonsVariant(value) {
+  const allowed = new Set(["default", "icon"]);
+  const v = (value == null || value === "" ? "default" : value).toString().trim();
+  return allowed.has(v) ? v : "default";
+}
+
 /**
  * Map Cloudial column schema → lightning-datatable column defs.
  * If a column already looks like a native datatable column (has fieldName),
