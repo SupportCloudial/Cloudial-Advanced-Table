@@ -11,7 +11,9 @@
       "enableS1EncryptedStoragePref2": false
     },
     "languageSettings": {
-      "enableTranslationWorkbench": true
+      "enableTranslationWorkbench": true,
+      "enableEndUserLanguages": true,
+      "enablePlatformLanguages": true
     },
     "securitySettings": {
       "sessionSettings": {

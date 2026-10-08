@@ -1,13 +1,14 @@
 {
   "packageDirectories": [
     {
-      "versionName": "Version 1.2.0 booleanBadge",
-      "versionNumber": "1.2.0.NEXT",
+      "versionName": "Version 1.4.0 previous-release",
+      "versionNumber": "1.4.0.NEXT",
       "path": "force-app",
       "default": true,
       "package": "Cloudial Advanced Table",
-      "versionDescription": "Generic booleanBadge cell (host labels/icons); vipBadge deprecated alias; On/Off label defaults.",
-      "ancestorVersion": "1.1.0"
+      "versionDescription": "Chrome placement/icon APIs (same as 1.3); built on previous Salesforce release for Dev Edition installs.",
+      "ancestorVersion": "1.4.0",
+      "definitionFile": "config/project-scratch-def-previous.json"
     }
   ],
   "name": "Cloudial Advanced Table",
@@ -19,6 +20,8 @@
     "Cloudial Advanced Table@1.0.0-1": "04tJ6000000Lx4MIAS",
     "Cloudial Advanced Table@1.0.0-2": "04tJ6000000Lx4RIAS",
     "Cloudial Advanced Table@1.1.0-1": "04tJ6000000Lx5FIAS",
-    "Cloudial Advanced Table@1.2.0-1": "04tJ6000000Lx5KIAS"
+    "Cloudial Advanced Table@1.2.0-1": "04tJ6000000Lx5KIAS",
+    "Cloudial Advanced Table@1.3.0-1": "04tJ6000000Lx7GIAS",
+    "Cloudial Advanced Table@1.4.0-1": "04tJ6000000Lx7LIAS"
   }
 }

@@ -10,15 +10,15 @@ actions, validation hooks, and visual themes.
 | Catalog ID | `cloudial-advanced-table` |
 | LWC | `cloudialAdvancedTable` |
 | Package ID | `0HoJ60000000064KAA` |
-| Released version | `1.2.0.1` (`04tJ6000000Lx5KIAS`) |
-| Install URL | https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx5KIAS |
+| Released version | `1.4.0.1` (`04tJ6000000Lx7LIAS`) |
+| Install URL | https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx7LIAS |
 | Repo | https://github.com/SupportCloudial/Cloudial-Advanced-Table |
 
 ## What is generic vs demo
 
 | Layer | Location | Purpose |
 |-------|----------|---------|
-| **Package** | `force-app/` | All chrome + cell types: search, filter, columns, refresh, bulk actions, `scoreMeter`, `booleanBadge`, row `action` menu, themes, Save/Cancel |
+| **Package** | `force-app/` | All chrome + cell types: search, filter, columns, refresh, bulk actions, optional `chrome-action-placement` / `chrome-buttons-variant`, `scoreMeter`, `booleanBadge`, row `action` menu, themes, Save/Cancel |
 | **Package smoke** | `test-support/` | Tiny in-memory harness for subscriber orgs after install |
 | **Contacts DE harness** | `.scratch/dev-edition-smoke/` | Account-related Contacts demo (SF save, VIP/Score demo fields). **Not packaged** |
 
@@ -42,6 +42,8 @@ The polished Contacts UI on Dev Edition is a **consumer** of the package API —
   filter-defs={filterDefs}
   enable-column-picker
   enable-refresh
+  chrome-action-placement="chrome"
+  chrome-buttons-variant="icon"
   theme="soft"
   onheaderaction={handleHeaderAction}
   onrowselection={handleRowSelection}
@@ -49,6 +51,8 @@ The polished Contacts UI on Dev Edition is a **consumer** of the package API —
   onsave={handleSave}
 ></c-cloudial-advanced-table>
 ```
+
+`chrome-action-placement` defaults to `header` (title-row actions). Use `chrome` or `toolbar` to move the same `header-actions` / `bulk-actions` block. `chrome-buttons-variant="icon"` makes Columns/Refresh icon-only.
 
 Managed tag (post-package): `<cloudialPackage-cloudial-advanced-table>`.
 

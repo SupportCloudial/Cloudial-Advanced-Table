@@ -4,6 +4,8 @@ import {
   compareValues,
   validateRows,
   normalizeTheme,
+  normalizeChromeActionPlacement,
+  normalizeChromeButtonsVariant,
   mergeDraftsIntoRows
 } from "c/cloudialAdtUtils";
 
@@ -11,6 +13,22 @@ describe("cloudialAdtUtils", () => {
   it("normalizes themes", () => {
     expect(normalizeTheme("glass")).toBe("glass");
     expect(normalizeTheme("nope")).toBe("default");
+  });
+
+  it("normalizes chromeActionPlacement", () => {
+    expect(normalizeChromeActionPlacement("header")).toBe("header");
+    expect(normalizeChromeActionPlacement("chrome")).toBe("chrome");
+    expect(normalizeChromeActionPlacement("toolbar")).toBe("toolbar");
+    expect(normalizeChromeActionPlacement("chorme")).toBe("header");
+    expect(normalizeChromeActionPlacement("")).toBe("header");
+    expect(normalizeChromeActionPlacement(undefined)).toBe("header");
+  });
+
+  it("normalizes chromeButtonsVariant", () => {
+    expect(normalizeChromeButtonsVariant("default")).toBe("default");
+    expect(normalizeChromeButtonsVariant("icon")).toBe("icon");
+    expect(normalizeChromeButtonsVariant("icons")).toBe("default");
+    expect(normalizeChromeButtonsVariant("")).toBe("default");
   });
 
   it("maps Cloudial schema columns", () => {

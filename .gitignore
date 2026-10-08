@@ -11,3 +11,7 @@ test-results/
 .scratch/
 
 de-pkg-smoke/
+
+# Local package version create CLI output
+package-version-create*.json
+

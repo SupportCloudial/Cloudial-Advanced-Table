@@ -7,11 +7,21 @@
     theme={theme}
     title={title}
     header-actions={headerActions}
+    bulk-actions={bulkActions}
     selected-rows={selectedRows}
+    enable-search
+    enable-filter
+    filter-defs={filterDefs}
+    enable-column-picker
+    enable-refresh
+    chrome-action-placement="chrome"
+    chrome-buttons-variant="icon"
     show-row-number-column
     onsave={handleSave}
     onrowselection={handleRowSelection}
     onrowaction={handleRowAction}
     onheaderaction={handleHeaderAction}
-  ></cloudialPackage-cloudial-advanced-table>
+  >
+    <div slot="toolbar" class="slds-text-body_small">Smoke toolbar slot</div>
+  </cloudialPackage-cloudial-advanced-table>
 </template>

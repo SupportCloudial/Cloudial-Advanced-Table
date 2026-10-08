@@ -8,7 +8,7 @@
           </div>
           <div class="cloudial-adt__count">{computedRecordCountLabel}</div>
         </div>
-        <template lwc:if={hasHeaderActions}>
+        <template lwc:if={showActionsInHeader}>
           <div class="cloudial-adt__header-actions">
             <template lwc:if={hasSelection}>
               <span class="cloudial-adt__selection-banner">{selectionBanner}</span>
@@ -53,18 +53,58 @@
           ></lightning-button>
         </template>
         <template lwc:if={enableColumnPicker}>
-          <lightning-button
-            label={labels.columns}
-            icon-name="utility:table"
-            onclick={toggleColumnPanel}
-          ></lightning-button>
+          <template lwc:if={isChromeButtonsIcon}>
+            <lightning-button-icon
+              icon-name="utility:table"
+              alternative-text={labels.columns}
+              title={labels.columns}
+              onclick={toggleColumnPanel}
+            ></lightning-button-icon>
+          </template>
+          <template lwc:else>
+            <lightning-button
+              label={labels.columns}
+              icon-name="utility:table"
+              onclick={toggleColumnPanel}
+            ></lightning-button>
+          </template>
         </template>
         <template lwc:if={enableRefresh}>
-          <lightning-button
-            label={labels.refresh}
-            icon-name="utility:refresh"
-            onclick={handleRefreshClick}
-          ></lightning-button>
+          <template lwc:if={isChromeButtonsIcon}>
+            <lightning-button-icon
+              icon-name="utility:refresh"
+              alternative-text={labels.refresh}
+              title={labels.refresh}
+              onclick={handleRefreshClick}
+            ></lightning-button-icon>
+          </template>
+          <template lwc:else>
+            <lightning-button
+              label={labels.refresh}
+              icon-name="utility:refresh"
+              onclick={handleRefreshClick}
+            ></lightning-button>
+          </template>
+        </template>
+        <template lwc:if={showActionsInChrome}>
+          <div class="cloudial-adt__header-actions cloudial-adt__chrome-actions">
+            <template lwc:if={hasSelection}>
+              <span class="cloudial-adt__selection-banner">{selectionBanner}</span>
+              <span class="cloudial-adt__selection-sep" aria-hidden="true">|</span>
+            </template>
+            <template for:each={headerActionItems} for:item="action">
+              <lightning-button
+                key={action.key}
+                data-name={action.name}
+                label={action.label}
+                variant={action.variant}
+                disabled={action.disabled}
+                icon-name={action.iconName}
+                title={action.title}
+                onclick={handleHeaderActionClick}
+              ></lightning-button>
+            </template>
+          </div>
         </template>
       </div>
     </template>
@@ -142,8 +182,30 @@
       </div>
     </template>
 
-    <div class="cloudial-adt__toolbar">
-      <slot name="toolbar"></slot>
+    <div class={toolbarClass}>
+      <div class="cloudial-adt__toolbar-slot">
+        <slot name="toolbar" onslotchange={handleToolbarSlotChange}></slot>
+      </div>
+      <template lwc:if={showActionsInToolbar}>
+        <div class="cloudial-adt__header-actions cloudial-adt__toolbar-actions">
+          <template lwc:if={hasSelection}>
+            <span class="cloudial-adt__selection-banner">{selectionBanner}</span>
+            <span class="cloudial-adt__selection-sep" aria-hidden="true">|</span>
+          </template>
+          <template for:each={headerActionItems} for:item="action">
+            <lightning-button
+              key={action.key}
+              data-name={action.name}
+              label={action.label}
+              variant={action.variant}
+              disabled={action.disabled}
+              icon-name={action.iconName}
+              title={action.title}
+              onclick={handleHeaderActionClick}
+            ></lightning-button>
+          </template>
+        </div>
+      </template>
     </div>
 
     <template lwc:if={showErrorBanner}>
