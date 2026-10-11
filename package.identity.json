@@ -10,6 +10,7 @@
     "Record hyperlinks via recordLink",
     "Header actions, contextual bulk-actions, toolbar slot",
     "Optional chromeActionPlacement (header|chrome|toolbar) and chromeButtonsVariant (default|icon)",
+    "Icon chrome parity: Filter icon-only with chromeButtonsVariant=icon; header/bulk iconOnly+iconName as lightning-button-icon",
     "Optional search, filter panel, column picker, refresh chrome",
     "Client-side type-aware column sort (ASC/DESC)",
     "Draft-values editing with Save/Cancel",
@@ -21,7 +22,7 @@
   "repository": "https://github.com/SupportCloudial/Cloudial-Advanced-Table",
   "packageType": "managed",
   "status": "released",
-  "version": "1.4.0",
-  "subscriberPackageVersionId": "04tJ6000000Lx7LIAS",
-  "installUrl": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx7LIAS"
+  "version": "1.5.0",
+  "subscriberPackageVersionId": "04tJ6000000Lx84IAC",
+  "installUrl": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx84IAC"
 }

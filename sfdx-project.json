@@ -1,14 +1,14 @@
 {
   "packageDirectories": [
     {
-      "versionName": "Version 1.4.0 previous-release",
-      "versionNumber": "1.4.0.NEXT",
+      "versionName": "Version 1.5.0 icon chrome parity",
+      "versionNumber": "1.5.0.NEXT",
       "path": "force-app",
       "default": true,
       "package": "Cloudial Advanced Table",
-      "versionDescription": "Chrome placement/icon APIs (same as 1.3); built on previous Salesforce release for Dev Edition installs.",
-      "ancestorVersion": "1.4.0",
-      "definitionFile": "config/project-scratch-def-previous.json"
+      "versionDescription": "Icon chrome parity: Filter icon-only with chromeButtonsVariant=icon; header/bulk actions support iconOnly+iconName as lightning-button-icon.",
+      "ancestorVersion": "1.5.0",
+      "definitionFile": "config/project-scratch-def.json"
     }
   ],
   "name": "Cloudial Advanced Table",
@@ -22,6 +22,7 @@
     "Cloudial Advanced Table@1.1.0-1": "04tJ6000000Lx5FIAS",
     "Cloudial Advanced Table@1.2.0-1": "04tJ6000000Lx5KIAS",
     "Cloudial Advanced Table@1.3.0-1": "04tJ6000000Lx7GIAS",
-    "Cloudial Advanced Table@1.4.0-1": "04tJ6000000Lx7LIAS"
+    "Cloudial Advanced Table@1.4.0-1": "04tJ6000000Lx7LIAS",
+    "Cloudial Advanced Table@1.5.0-1": "04tJ6000000Lx84IAC"
   }
 }

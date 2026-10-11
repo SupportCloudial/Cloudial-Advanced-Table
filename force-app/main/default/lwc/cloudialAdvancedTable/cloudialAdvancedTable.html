@@ -15,16 +15,30 @@
               <span class="cloudial-adt__selection-sep" aria-hidden="true">|</span>
             </template>
             <template for:each={headerActionItems} for:item="action">
-              <lightning-button
-                key={action.key}
-                data-name={action.name}
-                label={action.label}
-                variant={action.variant}
-                disabled={action.disabled}
-                icon-name={action.iconName}
-                title={action.title}
-                onclick={handleHeaderActionClick}
-              ></lightning-button>
+              <template lwc:if={action.iconOnly}>
+                <lightning-button-icon
+                  key={action.key}
+                  data-name={action.name}
+                  icon-name={action.iconName}
+                  alternative-text={action.alternativeText}
+                  title={action.title}
+                  variant={action.variant}
+                  disabled={action.disabled}
+                  onclick={handleHeaderActionClick}
+                ></lightning-button-icon>
+              </template>
+              <template lwc:else>
+                <lightning-button
+                  key={action.key}
+                  data-name={action.name}
+                  label={action.label}
+                  variant={action.variant}
+                  disabled={action.disabled}
+                  icon-name={action.iconName}
+                  title={action.title}
+                  onclick={handleHeaderActionClick}
+                ></lightning-button>
+              </template>
             </template>
           </div>
         </template>
@@ -46,11 +60,21 @@
           ></lightning-input>
         </template>
         <template lwc:if={enableFilter}>
-          <lightning-button
-            label={labels.filter}
-            icon-name="utility:filterList"
-            onclick={toggleFilterPanel}
-          ></lightning-button>
+          <template lwc:if={isChromeButtonsIcon}>
+            <lightning-button-icon
+              icon-name="utility:filterList"
+              alternative-text={labels.filter}
+              title={labels.filter}
+              onclick={toggleFilterPanel}
+            ></lightning-button-icon>
+          </template>
+          <template lwc:else>
+            <lightning-button
+              label={labels.filter}
+              icon-name="utility:filterList"
+              onclick={toggleFilterPanel}
+            ></lightning-button>
+          </template>
         </template>
         <template lwc:if={enableColumnPicker}>
           <template lwc:if={isChromeButtonsIcon}>
@@ -93,16 +117,30 @@
               <span class="cloudial-adt__selection-sep" aria-hidden="true">|</span>
             </template>
             <template for:each={headerActionItems} for:item="action">
-              <lightning-button
-                key={action.key}
-                data-name={action.name}
-                label={action.label}
-                variant={action.variant}
-                disabled={action.disabled}
-                icon-name={action.iconName}
-                title={action.title}
-                onclick={handleHeaderActionClick}
-              ></lightning-button>
+              <template lwc:if={action.iconOnly}>
+                <lightning-button-icon
+                  key={action.key}
+                  data-name={action.name}
+                  icon-name={action.iconName}
+                  alternative-text={action.alternativeText}
+                  title={action.title}
+                  variant={action.variant}
+                  disabled={action.disabled}
+                  onclick={handleHeaderActionClick}
+                ></lightning-button-icon>
+              </template>
+              <template lwc:else>
+                <lightning-button
+                  key={action.key}
+                  data-name={action.name}
+                  label={action.label}
+                  variant={action.variant}
+                  disabled={action.disabled}
+                  icon-name={action.iconName}
+                  title={action.title}
+                  onclick={handleHeaderActionClick}
+                ></lightning-button>
+              </template>
             </template>
           </div>
         </template>
@@ -193,16 +231,30 @@
             <span class="cloudial-adt__selection-sep" aria-hidden="true">|</span>
           </template>
           <template for:each={headerActionItems} for:item="action">
-            <lightning-button
-              key={action.key}
-              data-name={action.name}
-              label={action.label}
-              variant={action.variant}
-              disabled={action.disabled}
-              icon-name={action.iconName}
-              title={action.title}
-              onclick={handleHeaderActionClick}
-            ></lightning-button>
+            <template lwc:if={action.iconOnly}>
+              <lightning-button-icon
+                key={action.key}
+                data-name={action.name}
+                icon-name={action.iconName}
+                alternative-text={action.alternativeText}
+                title={action.title}
+                variant={action.variant}
+                disabled={action.disabled}
+                onclick={handleHeaderActionClick}
+              ></lightning-button-icon>
+            </template>
+            <template lwc:else>
+              <lightning-button
+                key={action.key}
+                data-name={action.name}
+                label={action.label}
+                variant={action.variant}
+                disabled={action.disabled}
+                icon-name={action.iconName}
+                title={action.title}
+                onclick={handleHeaderActionClick}
+              ></lightning-button>
+            </template>
           </template>
         </div>
       </template>

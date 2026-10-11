@@ -28,6 +28,14 @@ function createTable(props = {}) {
   return el;
 }
 
+function iconNameOf(el) {
+  return el.iconName || el.getAttribute("icon-name");
+}
+
+function dataNameOf(el) {
+  return el.dataset?.name || el.getAttribute("data-name");
+}
+
 describe("cloudialAdvancedTable chrome placement and icon buttons", () => {
   afterEach(() => {
     while (document.body.firstChild) {
@@ -74,9 +82,7 @@ describe("cloudialAdvancedTable chrome placement and icon buttons", () => {
     );
     expect(chromeActions).not.toBeNull();
     expect(
-      [...chromeActions.querySelectorAll("lightning-button")].map((b) =>
-        b.getAttribute("data-name")
-      )
+      [...chromeActions.querySelectorAll("lightning-button")].map(dataNameOf)
     ).toEqual(["add", "clone"]);
   });
 
@@ -132,13 +138,11 @@ describe("cloudialAdvancedTable chrome placement and icon buttons", () => {
       chromeActions.querySelector(".cloudial-adt__selection-banner")
     ).not.toBeNull();
     expect(
-      [...chromeActions.querySelectorAll("lightning-button")].map((b) =>
-        b.getAttribute("data-name")
-      )
+      [...chromeActions.querySelectorAll("lightning-button")].map(dataNameOf)
     ).toEqual(["delete"]);
   });
 
-  it("renders Columns and Refresh as icon-only when chromeButtonsVariant is icon", async () => {
+  it("renders Filter, Columns, and Refresh as icon-only when chromeButtonsVariant is icon", async () => {
     const el = createTable({
       headerActions: [],
       enableFilter: true,
@@ -148,22 +152,119 @@ describe("cloudialAdvancedTable chrome placement and icon buttons", () => {
     });
     await flushPromises();
 
-    const icons = el.shadowRoot.querySelectorAll("lightning-button-icon");
-    expect(icons.length).toBe(2);
-    const labeled = [...el.shadowRoot.querySelectorAll("lightning-button")].filter(
-      (b) => b.iconName === "utility:filterList" || b.label
+    const icons = [...el.shadowRoot.querySelectorAll("lightning-button-icon")];
+    expect(icons.map(iconNameOf).sort()).toEqual(
+      ["utility:filterList", "utility:refresh", "utility:table"].sort()
     );
-    // Filter remains a labeled lightning-button
+    const filterIcon = icons.find((b) => iconNameOf(b) === "utility:filterList");
+    expect(filterIcon.alternativeText || filterIcon.title).toBeTruthy();
     expect(
       el.shadowRoot.querySelector(
-        'lightning-button[icon-name="utility:filterList"], lightning-button'
+        'lightning-button[icon-name="utility:filterList"]'
       )
-    ).not.toBeNull();
-    const filterBtn = [...el.shadowRoot.querySelectorAll("lightning-button")].find(
-      (b) => (b.iconName || b.getAttribute("icon-name")) === "utility:filterList"
-    );
+    ).toBeNull();
+  });
+
+  it("keeps Filter labeled when chromeButtonsVariant is default", async () => {
+    const el = createTable({
+      headerActions: [],
+      enableFilter: true,
+      enableColumnPicker: true,
+      chromeButtonsVariant: "default"
+    });
+    await flushPromises();
+
+    expect(
+      el.shadowRoot.querySelectorAll("lightning-button-icon").length
+    ).toBe(0);
+    const filterBtn = [
+      ...el.shadowRoot.querySelectorAll("lightning-button")
+    ].find((b) => iconNameOf(b) === "utility:filterList");
     expect(filterBtn).toBeTruthy();
-    expect(labeled.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it("renders iconOnly header actions as lightning-button-icon", async () => {
+    const el = createTable({
+      chromeActionPlacement: "chrome",
+      headerActions: [
+        {
+          name: "add",
+          label: "Add row",
+          iconName: "utility:add",
+          iconOnly: true,
+          variant: "brand"
+        },
+        { name: "clone", label: "Clone", iconName: "utility:copy" }
+      ]
+    });
+    await flushPromises();
+
+    const chromeActions = el.shadowRoot.querySelector(
+      ".cloudial-adt__chrome-actions"
+    );
+    const iconBtn = chromeActions.querySelector("lightning-button-icon");
+    expect(iconBtn).not.toBeNull();
+    expect(dataNameOf(iconBtn)).toBe("add");
+    expect(iconNameOf(iconBtn)).toBe("utility:add");
+    expect(iconBtn.variant || iconBtn.getAttribute("variant")).toBe("brand");
+    expect(
+      iconBtn.alternativeText ||
+        iconBtn.getAttribute("alternative-text") ||
+        iconBtn.title
+    ).toMatch(/Add row/i);
+
+    const labeled = [...chromeActions.querySelectorAll("lightning-button")].map(
+      dataNameOf
+    );
+    expect(labeled).toEqual(["clone"]);
+  });
+
+  it("keeps labeled header actions when iconOnly is set without iconName", async () => {
+    const el = createTable({
+      headerActions: [
+        { name: "add", label: "Add row", iconOnly: true }
+      ]
+    });
+    await flushPromises();
+
+    expect(
+      el.shadowRoot.querySelectorAll("lightning-button-icon").length
+    ).toBe(0);
+    expect(
+      dataNameOf(
+        el.shadowRoot.querySelector(
+          ".cloudial-adt__header-actions lightning-button"
+        )
+      )
+    ).toBe("add");
+  });
+
+  it("dispatches headeraction from iconOnly header action click", async () => {
+    const el = createTable({
+      chromeActionPlacement: "header",
+      headerActions: [
+        {
+          name: "add",
+          label: "Add row",
+          iconName: "utility:add",
+          iconOnly: true
+        }
+      ]
+    });
+    await flushPromises();
+
+    const handler = jest.fn();
+    el.addEventListener("headeraction", handler);
+
+    const add = el.shadowRoot.querySelector(
+      'lightning-button-icon[data-name="add"], .cloudial-adt__header-actions lightning-button-icon'
+    );
+    expect(add).not.toBeNull();
+    add.click();
+    await flushPromises();
+
+    expect(handler).toHaveBeenCalled();
+    expect(handler.mock.calls[0][0].detail.name).toBe("add");
   });
 
   it("falls back to defaults for invalid placement and variant", async () => {

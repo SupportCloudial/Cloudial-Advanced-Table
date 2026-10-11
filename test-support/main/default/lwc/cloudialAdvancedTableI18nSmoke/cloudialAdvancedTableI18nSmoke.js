@@ -18,7 +18,18 @@ export default class CloudialAdvancedTableI18nSmoke extends LightningElement {
 
   get headerActions() {
     return [
-      { name: "new", label: "New", variant: "brand", iconName: "utility:add" }
+      {
+        name: "new",
+        label: "New",
+        variant: "brand",
+        iconName: "utility:add",
+        iconOnly: true
+      },
+      {
+        name: "clone",
+        label: "Clone",
+        iconName: "utility:copy"
+      }
     ];
   }
 
