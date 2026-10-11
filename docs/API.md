@@ -17,8 +17,8 @@ Unpackaged / DE testing: `<c-cloudial-advanced-table>`
 | `show-row-number-column` | Boolean | `false` | Show row numbers. |
 | `show-save-cancel` | Boolean | `true` | Show Save/Cancel footer while there are pending edits. |
 | `title` | String | — | Optional heading above the table. |
-| `header-actions` | Array | `[]` | Buttons when nothing is selected: `{ name, label, variant, disabled, iconName, requiresSelection }`. Fires `headeraction`. |
-| `bulk-actions` | Array | `[]` | When rows are selected **and** this array is non-empty, replace header actions with these buttons and show “N selected”. Same shape as `header-actions`. |
+| `header-actions` | Array | `[]` | Buttons when nothing is selected: `{ name, label, variant, disabled, iconName, iconOnly, requiresSelection, title }`. Fires `headeraction`. When `iconOnly: true` and `iconName` are set, renders `lightning-button-icon` (label/title → alternative-text/title). |
+| `bulk-actions` | Array | `[]` | When rows are selected **and** this array is non-empty, replace header actions with these buttons and show “N selected”. Same shape as `header-actions` (including optional `iconOnly`). |
 | `enable-search` | Boolean | `false` | Show search input in the chrome row. |
 | `search-placeholder` | String | `Search...` | Search input placeholder. |
 | `search-fields` | Array | `[]` | Field names to search. Empty = all primitive fields on the row. |
@@ -27,7 +27,7 @@ Unpackaged / DE testing: `<c-cloudial-advanced-table>`
 | `enable-column-picker` | Boolean | `false` | Show Columns button to show/hide hideable columns. |
 | `enable-refresh` | Boolean | `false` | Show Refresh in the chrome row (fires `headeraction` with `name: 'refresh'`). |
 | `chrome-action-placement` | String | `header` | Where `header-actions` / `bulk-actions` render: `header` (title row, default), `chrome` (logical end of chrome row), or `toolbar` (logical end of toolbar row). Invalid values fall back to `header`. Selection banner moves with the actions. |
-| `chrome-buttons-variant` | String | `default` | Columns / Refresh look: `default` (label + icon) or `icon` (icon-only; tooltip/aria from packaged labels). Filter stays labeled. Invalid values fall back to `default`. |
+| `chrome-buttons-variant` | String | `default` | Columns / Filter / Refresh look: `default` (label + icon) or `icon` (icon-only; tooltip/aria from packaged labels). Invalid values fall back to `default`. Host `header-actions` / `bulk-actions` stay labeled unless each action sets `iconOnly` + `iconName`. |
 | `record-count-label` | String | — | Override the count text next to the title. |
 | `record-noun` | String | `records` | Used for auto count: `"4 contacts"`. |
 | `theme` | String | `default` | `default` \| `dense` \| `glass` \| `soft` \| `highContrast` \| `custom`. |
@@ -185,9 +185,17 @@ Omit the new attributes to keep today’s title-row actions and labeled Columns/
 ></c-cloudial-advanced-table>
 ```
 
-- `chrome` places Add/Clone (and bulk actions + “N selected”) at the **logical end** of the chrome row (RTL-safe).
+- `chrome` places host `header-actions` / `bulk-actions` (and “N selected”) at the **logical end** of the chrome row (RTL-safe).
 - `toolbar` places the same block at the logical end of the toolbar row; host `slot="toolbar"` content stays on the start side.
-- Icon mode affects **Columns** and **Refresh** only; Filter stays labeled; Search stays an input.
+- Icon mode makes packaged **Filter**, **Columns**, and **Refresh** icon-only; Search stays an input.
+- Host actions are never invented by the package — pass them via `header-actions` / `bulk-actions`. Optional `iconOnly: true` + `iconName` renders that action as `lightning-button-icon`:
+
+```js
+headerActions = [
+  { name: 'add', label: 'Add row', iconName: 'utility:add', iconOnly: true, variant: 'brand' },
+  { name: 'clone', label: 'Clone', iconName: 'utility:copy' }
+];
+```
 
 ## Events
 

@@ -111,8 +111,8 @@ export default class CloudialAdvancedTable extends LightningElement {
   }
 
   /**
-   * Columns/Refresh button look: default (label+icon) | icon (icon-only).
-   * Invalid values fall back to default. Filter stays labeled.
+   * Columns/Filter/Refresh button look: default (label+icon) | icon (icon-only).
+   * Invalid values fall back to default. Header/bulk actions stay labeled unless iconOnly+iconName.
    */
   _chromeButtonsVariant = "default";
   @api
@@ -230,17 +230,34 @@ export default class CloudialAdvancedTable extends LightningElement {
     const source = this.hasSelection && (this.bulkActions || []).length
       ? this.bulkActions
       : this.headerActions;
-    return (Array.isArray(source) ? source : []).map((action, index) => ({
-      key: action.name || `action-${index}`,
-      name: action.name || `action-${index}`,
-      label: action.label || action.name || "Action",
-      variant: action.variant || "neutral",
-      disabled:
-        action.disabled === true ||
-        (action.requiresSelection === true && !this.hasSelection),
-      iconName: action.iconName || null,
-      title: action.title || action.label || ""
-    }));
+    return (Array.isArray(source) ? source : []).map((action, index) => {
+      const name = action.name || `action-${index}`;
+      const label = action.label || action.name || "Action";
+      const title = action.title || action.label || label;
+      const iconName = action.iconName || null;
+      const iconOnly = action.iconOnly === true && !!iconName;
+      let variant = action.variant;
+      if (iconOnly) {
+        // lightning-button-icon does not use lightning-button's "neutral".
+        variant =
+          variant && variant !== "neutral" ? variant : "border";
+      } else {
+        variant = variant || "neutral";
+      }
+      return {
+        key: name,
+        name,
+        label,
+        variant,
+        disabled:
+          action.disabled === true ||
+          (action.requiresSelection === true && !this.hasSelection),
+        iconName,
+        iconOnly,
+        title,
+        alternativeText: title
+      };
+    });
   }
 
   get hasHeaderActions() {

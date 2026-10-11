@@ -10,8 +10,8 @@ actions, validation hooks, and visual themes.
 | Catalog ID | `cloudial-advanced-table` |
 | LWC | `cloudialAdvancedTable` |
 | Package ID | `0HoJ60000000064KAA` |
-| Released version | `1.4.0.1` (`04tJ6000000Lx7LIAS`) |
-| Install URL | https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx7LIAS |
+| Released version | `1.5.0.1` (`04tJ6000000Lx84IAC`) |
+| Install URL | https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ6000000Lx84IAC |
 | Repo | https://github.com/SupportCloudial/Cloudial-Advanced-Table |
 
 ## What is generic vs demo
@@ -52,7 +52,7 @@ The polished Contacts UI on Dev Edition is a **consumer** of the package API —
 ></c-cloudial-advanced-table>
 ```
 
-`chrome-action-placement` defaults to `header` (title-row actions). Use `chrome` or `toolbar` to move the same `header-actions` / `bulk-actions` block. `chrome-buttons-variant="icon"` makes Columns/Refresh icon-only.
+`chrome-action-placement` defaults to `header` (title-row actions). Use `chrome` or `toolbar` to move the same `header-actions` / `bulk-actions` block. `chrome-buttons-variant="icon"` makes Filter/Columns/Refresh icon-only. Hosts pass their own actions; set `iconOnly: true` with `iconName` on an action for a round icon button (labeled actions unchanged).
 
 Managed tag (post-package): `<cloudialPackage-cloudial-advanced-table>`.
 
